@@ -1,3 +1,31 @@
-<p>
-  register works!
-</p>
+<h4>STWÓRZ NOWE KONTO KLIENTA</h4>
+<h6>Tworzenie konta jest proste. Wystarczy, że wypełnisz formularz.</h6>
+<div class="col-md-6 col-md-offset-3">
+    <h4>PODAJ DANE DO REJESTRACJI KONTA KLIENTA  </h4>
+    <form name="form">
+        <div class="form-group">
+            <label for="firstName">Imię</label>
+            <input type="text" class="form-control" name="firstName" />
+        </div>
+        <div class="form-group" >
+            <label for="lastName">Nazwisko</label>
+            <input type="text" class="form-control" name="lastName" />
+        </div>
+        <div class="form-group" >
+            <label for="username">E-mail</label>
+            <input type="text" class="form-control" name="username" />
+        </div>
+        <div class="form-group" >
+            <label for="password">Hasło</label>
+            <input type="password" class="form-control" name="password" />
+        </div>
+        <div class="form-group" >
+            <label for="password">Potwierdź hasło</label>
+            <input type="password" class="form-control" name="password" />
+        </div>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">UTWÓRZ KONTO</button>
+            <a [routerLink]="['/login']" class="btn btn-link">Anuluj</a>
+        </div>
+    </form>
+</div>
