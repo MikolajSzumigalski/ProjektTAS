@@ -7,32 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  book = [
+  books = [
     {
+      id:1,
       name: "Wilcze Leże",
       author: "Andrzej Pilipiuk",
-      price: 31,
-      image:[
-        {
-          url:'http://placehold.it/640x640'
-        }
-      ]
+      price: 55,
+      image:'https://static.intelimedia.pl/sub/_bw79530.jpg'
     },
     {
-      name: 'Album 2',
-      image:[
-        {
-          url:'http://placehold.it/640x640'
-        }
-      ]
+      id:2,
+      name: 'Pan Lodowego ogrodu',
+      author: "Jarosław Grzędowycz",
+      price: 64,
+      image:'https://static.intelimedia.pl/sub/_bc25045.jpg'
     },
     {
-      name: 'Album 3',
-      image:[
-        {
-          url:'http://placehold.it/640x640'
-        }
-      ]
+      id:3,
+      name: 'Szubienicznik',
+      author: "Jacek Piekara",
+      price: 45,
+      image:'http://ecsmedia.pl/c/szubienicznik-tom-1-b-iext43249274.jpg'
     }
   ];
   constructor() { }

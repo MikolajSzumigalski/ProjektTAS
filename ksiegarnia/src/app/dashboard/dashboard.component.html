@@ -2,10 +2,19 @@
   <h1>
     Welcome to !
   </h1>
-  Tytuł: {{book.name[1]  }}{{book.author[1]}}{{book.price[1]}}
-  <img width="300" src="https://static.intelimedia.pl/sub/_bw79530.jpg">
-  <img src="https://static.intelimedia.pl/sub/_bw79530.jpg" class="rounded float-left" alt="Responsive image">
-  <img src="https://static.intelimedia.pl/sub/_bw79530.jpg"class="rounded float-right" alt="Responsive image">
+ <!--  comment 
+  <tr *ngFor="let book of books">
+    <td> <img width="200" img src='{{book.image}}' class="rounded float-left" alt="Responsive image"></td>
+    <td>{{book.name}}</td>
+    <td>{{book.author}}</td>
+    <td>Cena: {{book.price}}</td>
+  </tr>-->
+  <div class="row">
+      <div *ngFor="let book of books" class="col">
+        <img width="200" img src='{{book.image}}' class="rounded float-left" alt="Responsive image">{{book.name}}
+        {{book.name}} {{book.author}} {{book.price}}
+      </div>
+  </div>
 </div>
 
 
