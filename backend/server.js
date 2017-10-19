@@ -4,7 +4,6 @@ path = require('path')
 bodyParser = require('body-parser')
 const app = express()
 const port = 8080
-//_ = require('lodash');
 
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
