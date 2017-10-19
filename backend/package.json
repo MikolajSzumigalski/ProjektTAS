@@ -23,6 +23,7 @@
     "@angular/router": "^4.2.4",
     "bootstrap": "^4.0.0-beta",
     "core-js": "^2.4.1",
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
     "jquery": "^3.2.1",
     "popper.js": "^1.11.0",
@@ -30,6 +31,7 @@
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
+    "mongodb": "*",
     "@angular/cli": "1.4.7",
     "@angular/compiler-cli": "^4.2.4",
     "@angular/language-service": "^4.2.4",
