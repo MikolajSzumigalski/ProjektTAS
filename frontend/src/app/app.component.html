@@ -1,5 +1,21 @@
-
-    <div class="main-content">
-      <router-outlet></router-outlet>
-    </div>
+<nav>
+  <ul>
+    <li>
+      <a [routerLink]="['/login']">Zaloguj</a>
+    </li>
+    <li>
+      <a [routerLink]=" ['/register'] ">Zarejestruj</a>
+    </li>
+    <li>
+      <a [routerLink]=" ['/user-account'] ">Koszyk</a>
+    </li>
+    <li>
+      <a [routerLink]=" [''] ">Strona główna</a>
+    </li>
+  </ul>
+</nav>
+<!--<myHeader></myHeader>-->
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
 
