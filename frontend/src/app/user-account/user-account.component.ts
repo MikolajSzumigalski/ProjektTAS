@@ -1,11 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Http, Response} from '@angular/http'
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/map';
+@Injectable()
 @Component({
   selector: 'app-user-account',
   templateUrl: './user-account.component.html',
   styleUrls: ['./user-account.component.css']
 })
+
 export class UserAccountComponent implements OnInit {
+  constructor(private http: HttpClient) {}
+  result;
+  getbooks(){
+    return this.http.get('localhost:8000/api/books')
+    .map((res:Response) => res.json()).subscribe(result => this.result =result),
+    console.log(this.result);
+  }
+
+
   books = [
     {
       id:1,
@@ -17,15 +31,14 @@ export class UserAccountComponent implements OnInit {
     },
     {
       id:2,
-      name: 'Pan Lodowego ogrodu',
+      name: 'Pan Lodowego ogsrodu',
       author: "Jarosław Grzędowycz",
       price: 64,
       image:'https://static.intelimedia.pl/sub/_bc25045.jpg',
       describtion:"Świat Erdas wciąż jest w niebezpieczeństwie Conor, Abeke, Meilin i Rollan starają się uratować świat przed starożytnym złem, ale więź łącząca zwierzoduchy z ich opiekunami jest coraz słabsza. Przyjaciele stają oko w oko z wrogiem, który posiada zdolność ...."
     }
   ];
-  constructor() { }
-
+  
   ngOnInit() {
   }
 
