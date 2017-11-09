@@ -3,7 +3,7 @@ const express = require('express')
 path = require('path')
 bodyParser = require('body-parser')
 const app = express()
-const port = 8080
+const port = 1220
 
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');

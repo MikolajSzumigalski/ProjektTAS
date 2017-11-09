@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommunicationService } from "app/common/communication.service";
 
 @Component({
   selector: 'app-user-account',
@@ -24,9 +25,10 @@ export class UserAccountComponent implements OnInit {
       describtion:"Świat Erdas wciąż jest w niebezpieczeństwie Conor, Abeke, Meilin i Rollan starają się uratować świat przed starożytnym złem, ale więź łącząca zwierzoduchy z ich opiekunami jest coraz słabsza. Przyjaciele stają oko w oko z wrogiem, który posiada zdolność ...."
     }
   ];
-  constructor() { }
-
+  constructor(private communicationService:CommunicationService) { }
   ngOnInit() {
+    //this.communicationService.getBooks().subscribe(books =>this.books = books);
   }
+  //console.log(books);
 
 }
