@@ -6,7 +6,9 @@ import { CommunicationService } from "app/common/communication.service";
   templateUrl: './user-account.component.html',
   styleUrls: ['./user-account.component.css']
 })
+
 export class UserAccountComponent implements OnInit {
+   books1 = {};
   books = [
     {
       id:1,
@@ -25,10 +27,15 @@ export class UserAccountComponent implements OnInit {
       describtion:"Świat Erdas wciąż jest w niebezpieczeństwie Conor, Abeke, Meilin i Rollan starają się uratować świat przed starożytnym złem, ale więź łącząca zwierzoduchy z ich opiekunami jest coraz słabsza. Przyjaciele stają oko w oko z wrogiem, który posiada zdolność ...."
     }
   ];
-  constructor(private communicationService:CommunicationService) { }
+  constructor(private service:CommunicationService) { }
   ngOnInit() {
-    //this.communicationService.getBooks().subscribe(books =>this.books = books);
+    this.service.getBooks().subscribe(books1 =>this.books1 = books1);
+    console.log("service is working");
+    console.log("from user-account: " + this.books1);
+    setTimeout(()=>
+    this.service.getBooks()
+  .subscribe(books1 =>this.books1 = books1),500);
   }
-  //console.log(books);
-
+ // console.log(books);
+  //console.log("Hello1");
 }

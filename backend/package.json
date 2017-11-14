@@ -1,16 +1,25 @@
 {
-  "name": "mytasklist",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "simple task manager",
+  "description": "tas project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "mongojs": "^2.4.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikolajSzumigalski/ProjektTAS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MikolajSzumigalski/ProjektTAS/issues"
+  },
+  "homepage": "https://github.com/MikolajSzumigalski/ProjektTAS#readme"
 }
