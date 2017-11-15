@@ -4,7 +4,7 @@
   </h1>
  <!--  comments -->
   <div class="row">
-    <div *ngFor="let book of books" class="col">
+    <div *ngFor="let book of books1" class="col">
         <div class="card" style="width: 12rem;">
             <img class="card-img-top" src='{{book.image}}' alt="Card image cap">
             <div class="card-body">
@@ -14,13 +14,14 @@
             <ul class="list-group list-group-flush">
               <li style="font-size:13px" class="list-group-item"> {{book.author}}</li>
               <li style="font-size:13px" class="list-group-item">Cena:    {{book.price}}</li>
+              <li style="font-size:13px" class="list-group-item">Dostępna ilość:    {{book.count}}</li>
             </ul>
             <div class="card-body">
               <button type="button" [routerLink]="['/dashboard']" class="btn btn-success">Do koszyka</button>
             </div>
         </div>
     </div>
-  </div>
+  </div> 
 
 </div>
 

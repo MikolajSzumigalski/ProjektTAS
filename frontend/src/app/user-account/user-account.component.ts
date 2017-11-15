@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './user-account.component.html',
   styleUrls: ['./user-account.component.css']
 })
+
 export class UserAccountComponent implements OnInit {
   books = [
     {
@@ -25,8 +26,6 @@ export class UserAccountComponent implements OnInit {
     }
   ];
   constructor() { }
-
   ngOnInit() {
   }
-
 }

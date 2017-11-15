@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommunicationService } from "app/common/communication.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  books1 = {};
   books = [
     {
       id:1,
@@ -49,9 +50,14 @@ export class DashboardComponent implements OnInit {
       describtion:"Świat Erdas wciąż jest w niebezpieczeństwie Conor, Abeke, Meilin i Rollan starają się uratować świat przed starożytnym złem, ale więź łącząca zwierzoduchy z ich opiekunami jest coraz słabsza. Przyjaciele stają oko w oko z wrogiem, który posiada zdolność ...."
     }
   ];
-  constructor() { }
-
+  constructor(private service:CommunicationService) { }
   ngOnInit() {
+    this.service.getBooks().subscribe(books1 =>this.books1 = books1);
+    console.log("service is working");
+    console.log("from user-account: " + this.books1);
+    setTimeout(()=>
+    this.service.getBooks()
+  .subscribe(books1 =>this.books1 = books1),500);
   }
 
 }
