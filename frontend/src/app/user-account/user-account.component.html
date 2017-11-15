@@ -23,9 +23,12 @@
     </tr>
   {{books1}}
   {{books1 | json}}
-  <div *ngIf="books1">{{books1}}</div>-->
-  {{books1 | json}}
+  <div *ngIf="books1">{{books1}}</div>
+
+    
   Autor: 
-  <div *ngFor="let book of books1">{{book.author | json}}</div>
+  {{books1[0].author}}
+  <div *ngFor="let book of books1">{{book.author}}</div>-->
+  <div *ngFor="let book of books1">{{book.author}}{{ book.name}}
   
 </div>
