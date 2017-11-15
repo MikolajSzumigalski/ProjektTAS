@@ -29,6 +29,5 @@
   Autor: 
   {{books1[0].author}}
   <div *ngFor="let book of books1">{{book.author}}</div>-->
-  <div *ngFor="let book of books1">{{book.author}}{{ book.name}}
-  
-</div>
+  <div *ngFor="let book of books1"> {{book.author}} {{ book.name}} <img class="card-img-top" src='{{book.image}}' alt="Card image cap"> {{ book.image}} {{ book.describtion}} {{ book.count}} </div>
+ 
