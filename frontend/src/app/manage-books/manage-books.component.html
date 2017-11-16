@@ -26,6 +26,35 @@
     <h2>
         Dodaj nową książkę
     </h2>
+    <div class="col-md-6 col-md-offset-3">
+        <h4>Podaj informacje o książce którą chcesz dodać </h4>
+        <form name="form">
+            <div class="form-group">
+                <label for="firstName">Tytuł książki</label>
+                <input type="text" class="form-control" name="name" />
+            </div>
+            <div class="form-group" >
+                <label for="author">Autor</label>
+                <input type="author" class="form-control" name="author" />
+            </div>
+            <div class="form-group" >
+                <label for="price">Cena</label>
+                <input type="price" class="form-control" name="price" />
+            </div>
+            <div class="form-group" >
+                <label for="count">ilość dostępnych w sprzedaży</label>
+                <input type="count" class="form-control" name="count" />
+            </div>
+            <div class="form-group" >
+                <label for="describtion">Opis książki</label>
+                <input type="describtion" class="form-control" name="describtion" />
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">Dodaj książkę</button>
+                <a [routerLink]="['/manage-books']" class="btn btn-link">Anuluj</a>
+            </div>
+        </form>
+    </div>
 
 
   </div>
