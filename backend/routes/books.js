@@ -46,4 +46,17 @@ router.get('/book/:id', function(req, res, next){
         res.json(books);
     });
 });
+
+router.get('/book/:author', function(req, res, next){
+    db.books.findOne({author: author}, function(err, books){
+        if(err){
+            res.send(err);
+        }
+		console.log("author");
+		console.log(author);
+        res.json(books);
+    });
+});
+
+
 module.exports = router;

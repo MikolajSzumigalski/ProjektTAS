@@ -1,0 +1,31 @@
+<div class = "container">
+    <h1>
+      Zarządzaj książkami
+    </h1>
+   <!--  comments -->
+   <h2>
+      Usuń książkę
+  </h2>
+    <div class="row">
+      <div *ngFor="let book of books" class="col">
+          <div class="card" style="width: 8rem;">
+              <img class="card-img-top" src='{{book.image}}' alt="Card image cap">
+              <div class="card-body">
+                <h6 class="card-title">{{book.name}} </h6>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li style="font-size:13px" class="list-group-item"> {{book.author}}</li>
+                <li style="font-size:13px" class="list-group-item">Cena:    {{book.price}}</li>
+              </ul>
+              <div class="card-body">
+                <button type="button" [routerLink]="['/dashboard']" class="btn btn-danger">Usuń</button>
+              </div>
+          </div>
+      </div>
+    </div> 
+    <h2>
+        Dodaj nową książkę
+    </h2>
+
+
+  </div>
