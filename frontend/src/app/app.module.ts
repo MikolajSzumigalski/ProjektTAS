@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { HeaderComponent } from './common/header.component';
+import { ManageBooksComponent } from './manage-books/manage-books.component';
 import { CommunicationService } from './common/communication.service';
 import { Http, Response} from '@angular/http'
 import { HttpModule } from '@angular/http';
@@ -18,7 +19,8 @@ import { HttpModule } from '@angular/http';
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    UserAccountComponent
+    UserAccountComponent, 
+    ManageBooksComponent
   ],
   imports: [
     BrowserModule,

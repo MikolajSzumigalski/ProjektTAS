@@ -1,6 +1,12 @@
 <nav>
   <ul>
     <li>
+          <a [routerLink]=" [''] ">Strona główna</a>
+    </li>
+    <li>
+          <a [routerLink]=" ['/manage-books'] ">Zarządzaj książkami</a>
+    </li>
+    <li>
       <a [routerLink]="['/login']">Zaloguj</a>
     </li>
     <li>
@@ -8,9 +14,6 @@
     </li>
     <li>
       <a [routerLink]=" ['/user-account'] ">Koszyk</a>
-    </li>
-    <li>
-      <a [routerLink]=" [''] ">Strona główna</a>
     </li>
   </ul>
 </nav>

@@ -1,0 +1,67 @@
+<div class = "container">
+    <h2>
+        Zarządzaj książkami
+    </h2>
+     <div class = "container-delete_book">
+        <h3><br>
+            Usuń książkę
+        <br></h3>
+            <div class="row">
+                    <div *ngFor="let book of books1" class="col">
+                        <div class="card" style="width: 12rem;">
+                            <img class="card-img-top" src='{{book.image}}' alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{book.name}} </h5>
+                                <p  style="font-size:11px" class="card-text">{{book.describtion}} </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li style="font-size:13px" class="list-group-item"> {{book.author}}</li>
+                                <li style="font-size:13px" class="list-group-item">Cena:    {{book.price}}</li>
+                                <li style="font-size:13px" class="list-group-item">Dostępna ilość:    {{book.count}}</li>
+                            </ul>
+                            <div class="card-body">
+                                    <button type="button" (click)="removeBook(book._id)" class="btn btn-danger btn-xs" >Usuń</button>
+                            </div>
+                        </div>
+                    </div>
+             </div> 
+    </div>
+    <div class = "container-add_book">
+        <h3><br><br>
+            Dodaj nową książkę <br>
+        </h3>
+        <div class="col-md-6 col-1md-offset-3">
+            <h6>Podaj informacje o książce którą chcesz dodać </h6>
+            <form name="form">
+                <div class="form-group">
+                    <label for="firstName">Tytuł książki</label>
+                    <input type="text" class="form-control" name="name" />
+                </div>
+                <div class="form-group" >
+                    <label for="author">Autor</label>
+                    <input type="author" class="form-control" name="author" />
+                </div>
+                <div class="form-group" >
+                    <label for="price">Cena</label>
+                    <input type="price" class="form-control" name="price" />
+                </div>
+                <div class="form-group" >
+                    <label for="count">Ilość sztuk dostępnych w sprzedaży</label>
+                    <input type="count" class="form-control" name="count" />
+                </div>
+                <div class="form-group" >
+                        <label for="count">Obraz książki</label>
+                        <input type="count" class="form-control" name="url" />
+                    </div>
+                <div class="form-group" >
+                    <label for="describtion">Opis książki</label>
+                    <input type="describtion" class="form-control" name="describtion" />
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">Dodaj książkę</button>
+                    <a [routerLink]="['/manage-books']" class="btn btn-link">Anuluj</a>
+                </div>
+            </form>
+        </div>
+    </div>  
+</div>
