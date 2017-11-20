@@ -12,7 +12,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.service.getBooks().subscribe(books1 =>this.books1 = books1);
     console.log("service is working");
-    console.log("from user-account: " + this.books1);
     setTimeout(()=>
     this.service.getBooks()
   .subscribe(books1 =>this.books1 = books1),500);
