@@ -4,7 +4,7 @@
     </h2>
      <div class = "container-delete_book">
         <h3><br>
-            Usuń książkę
+            Usuń lub edytuj książkę
         <br></h3>
             <div class="row">
                     <div *ngFor="let book of books1" class="col">
@@ -13,16 +13,17 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{book.name}} </h5>
                                 <p  style="font-size:11px" class="card-text">{{book.describtion}} </p>
-                            </div>
+                            </div> 
                             <ul class="list-group list-group-flush">
                                 <li style="font-size:13px" class="list-group-item"> {{book.author}}</li>
                                 <li style="font-size:13px" class="list-group-item">Cena:    {{book.price}}</li>
+                                <li style="font-size:13px" class="list-group-item">Numer ISBN:    {{book.isbn}}</li>
                                 <li style="font-size:13px" class="list-group-item">Dostępna ilość:    {{book.count}}</li>
                             </ul>
                             <div class="card-body">
                                     <button type="button" (click)="removeBook(book._id)" class="btn btn-danger btn-xs" >Usuń</button>
+                                    <button type="button" (click)="removeBook(book._id)" class="btn btn-danger btn-xs" >Edytuj</button>
                             </div>
-                        </div>
                     </div>
              </div> 
     </div>
@@ -34,32 +35,36 @@
             <h6>Podaj informacje o książce którą chcesz dodać </h6>
             <form name="form">
                 <div class="form-group">
-                    <label for="firstName">Tytuł książki</label>
-                    <input type="text" class="form-control" name="name" />
+                    <label for="name">Tytuł książki</label>
+                    <input name="name" [(ngModel)]="book.name" />
                 </div>
                 <div class="form-group" >
-                    <label for="author">Autor</label>
-                    <input type="author" class="form-control" name="author" />
+                    <label for="author">Autor:</label>
+                    <input  name="author"  [(ngModel)]="book.author" />
                 </div>
                 <div class="form-group" >
-                    <label for="price">Cena</label>
-                    <input type="price" class="form-control" name="price" />
+                    <label for="price">Cena:</label>
+                    <input name="price" [(ngModel)]="book.price" />
                 </div>
                 <div class="form-group" >
-                    <label for="count">Ilość sztuk dostępnych w sprzedaży</label>
-                    <input type="count" class="form-control" name="count" />
+                    <label for="count">Ilość sztuk dostępnych w sprzedaży:</label>
+                    <input [(ngModel)]="book.count" name="count" />
                 </div>
                 <div class="form-group" >
-                        <label for="count">Obraz książki</label>
-                        <input type="count" class="form-control" name="url" />
-                    </div>
+                        <label for="image">Obraz książki:</label>
+                        <input [(ngModel)]="book.image" name="image" />
+                </div>
                 <div class="form-group" >
-                    <label for="describtion">Opis książki</label>
-                    <input type="describtion" class="form-control" name="describtion" />
+                        <label for="isbn">ISBN:</label>
+                        <input type="isbn" [(ngModel)]="book.isbn" name="isbn" />
+                </div>
+                <div class="form-group" >
+                    <label for="describtion">Opis książki:</label>
+                    <input type="describtion" [(ngModel)]="book.describtion"  name="describtion" />
                 </div>
                 <div class="form-group">
-                    <button [disabled]="loading" class="btn btn-primary">Dodaj książkę</button>
-                    <a [routerLink]="['/manage-books']" class="btn btn-link">Anuluj</a>
+                    <button (click)="addBook()" class="btn btn-primary">Dodaj książkę</button>
+                    <a [routerLink]="['/dashboard']" class="btn btn-link">Anuluj</a>
                 </div>
             </form>
         </div>
