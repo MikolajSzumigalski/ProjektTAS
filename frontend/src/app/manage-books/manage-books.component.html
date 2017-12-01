@@ -1,69 +1,115 @@
 <div class = "container">
-    <h2>
-        Zarządzaj książkami
-    </h2>
+    <h2>Zarządzaj książkami</h2>
      <div class = "container-delete_book">
-        <h3><br>
-            Usuń lub edytuj książkę
-        <br></h3>
-            <div class="row">
-                    <div *ngFor="let book of books1" class="col">
-                        <div class="card" style="width: 12rem;">
-                            <img class="card-img-top" src='{{book.image}}' alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">{{book.name}} </h5>
-                                <p  style="font-size:11px" class="card-text">{{book.describtion}} </p>
-                            </div> 
-                            <ul class="list-group list-group-flush">
-                                <li style="font-size:13px" class="list-group-item"> {{book.author}}</li>
-                                <li style="font-size:13px" class="list-group-item">Cena:    {{book.price}}</li>
-                                <li style="font-size:13px" class="list-group-item">Numer ISBN:    {{book.isbn}}</li>
-                                <li style="font-size:13px" class="list-group-item">Dostępna ilość:    {{book.count}}</li>
-                            </ul>
-                            <div class="card-body">
-                                    <button type="button" (click)="removeBook(book._id)" class="btn btn-danger btn-xs" >Usuń</button>
-                                    <button type="button" (click)="removeBook(book._id)" class="btn btn-danger btn-xs" >Edytuj</button>
-                            </div>
+        <h3><br>Usuń lub edytuj książkę<br></h3>
+        <div class="row">
+            <div *ngFor="let book of books1" class="col">
+                <div class="card" style="width: 18rem;"><br>
+                    <div *ngIf="!show">
+                        <img class="card-img-top" src='{{book.image}}' alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{book.name}} </h5>
+                            <textarea  style="font-size:10px" class="card-text">{{book.describtion}} </textarea>
+                        </div> 
+                        <ul class="list-group list-group-flush">
+                            <li style="font-size:13px" class="list-group-item"> {{book.author}}</li>
+                            <li style="font-size:13px" class="list-group-item">Cena:    {{book.price}} zł</li>
+                            <li style="font-size:13px" class="list-group-item">Numer ISBN:    {{book.isbn}}</li>
+                            <li style="font-size:13px" class="list-group-item">Dostępna ilość:    {{book.count}}</li>
+                        </ul>    
                     </div>
-             </div> 
-    </div>
+                    <div *ngIf="show">
+                        <img class="card-img-top" src='{{book.image}}' alt="Card image cap">
+                        <input [(ngModel)]="book.image" placeholder="book.image"> 
+                        <li style="font-size:13px" class="list-group-item">Tytuł książki: 
+                            <input [(ngModel)]="book.name" #nameRef="ngModel" placeholder="book.name" required pattern="(?!.*(\s)\1.*)[ \w\.,\:;-=ąćęłńóśźżĄĘŁŃÓŚŹŻ]*"> </li>
+                                  <div *ngIf="nameRef.errors && nameRef.touched" class="alert alert-danger">Podanie tytułu książki jest wymagane.</div>
+                        Opis książki: 
+                            <textarea [(ngModel)]="book.describtion" placeholder="book.describtion"></textarea>
+                        <ul class="list-group list-group-flush">
+                            <li style="font-size:13px" class="list-group-item">Autor: 
+                                    <input [(ngModel)]="book.author" #authorRef="ngModel" placeholder="book.author" minlength="3" required pattern="(?!.*(\s)\1.*)[ \w\.,\:;-=ąćęłńóśźżĄĘŁŃÓŚŹŻ]*"></li>
+                                    <div *ngIf="authorRef.errors && authorRef.touched" class="alert alert-danger">Minimalna długość to 3 znaki.</div>
+                            <li style="font-size:13px" class="list-group-item">Cena: 
+                                    <input [(ngModel)]="book.price"  #priceRef="ngModel" required pattern="[0-9][0-9]*.[0-9]?[0-9]" placeholder="book.price"> </li>
+                                    <div *ngIf="priceRef.errors && priceRef.touched" class="alert alert-danger"> Cena książki została podany w sposób nieprawidłowy. </div>
+                            <li style="font-size:13px" class="list-group-item">Numer ISBN:  {{book.isbn}}</li>
+                            <li style="font-size:13px" class="list-group-item">Dostępna ilość:  
+                                    <input [(ngModel)]="book.count"  min=0 #countRef="ngModel" pattern="[0-9]*" required placeholder="book.count"> </li>
+                                    <div *ngIf="countRef.errors && countRef.touched" class="alert alert-danger">Wartość musi być liczbą całkowitą.</div>
+                        </ul>  
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div *ngIf="!show"> <button type="button" (click)="removeBook(book._id)" class="btn btn-danger btn-xs" >Usuń</button></div>
+                            <div *ngIf="show"> <button type="button" (click)="updateBook(book)" (click)="show = !show" class="btn btn-success btn-xs" >Zapisz</button></div><br>
+                            <button class="btn btn-warning btn-xs" (click)="show = !show">{{show ? 'Anuluj edycję' : 'Edytuj książki'}}</button>
+                        </div>
+                    </div>
+                </div>
+           </div> 
+      </div>
     <div class = "container-add_book">
-        <h3><br><br>
-            Dodaj nową książkę <br>
-        </h3>
+        <h3><br><br>Dodaj nową książkę <br></h3>
         <div class="col-md-6 col-1md-offset-3">
             <h6>Podaj informacje o książce którą chcesz dodać </h6>
-            <form name="form">
-                <div class="form-group">
-                    <label for="name">Tytuł książki</label>
-                    <input name="name" [(ngModel)]="book.name" />
-                </div>
+            <form name="addNewBook" #formRef="ngForm" novalidate="false">
+                <label for="bookName">Tytuł książki</label>
+                <input type="text"  pattern="(?!.*(\s)\1.*)[ \w\.,\:;-=ąćęłńóśźżĄĘŁŃÓŚŹŻ]*" #bookNameRef='ngModel' class="form-control"  placeholder="tytuł" name="bookName" minlength="1" required  [(ngModel)]="book.name" forbiddenName=" "/>
+                <div *ngIf="bookNameRef.errors && bookNameRef.touched" class="alert alert-danger">Podanie tytułu książki jest wymagane.</div>
                 <div class="form-group" >
                     <label for="author">Autor:</label>
-                    <input  name="author"  [(ngModel)]="book.author" />
+                    <input  type="text" #bookAuthorRef='ngModel' pattern="(?!.*(\s)\1.*)[ \w\.,\:;-=ąćęłńóśźżĄĘŁŃÓŚŹŻ]*" class="form-control" placeholder="autor" name="author" minlength="3" required [(ngModel)]="book.author"  />
+                     <div *ngIf="bookAuthorRef.errors && bookAuthorRef.touched" class="alert alert-danger">Autor książki jest zbyt krótki. Minimalna długość to 3 znaki.</div>
                 </div>
                 <div class="form-group" >
                     <label for="price">Cena:</label>
-                    <input name="price" [(ngModel)]="book.price" />
+                    <input class="form-control" pattern="[0-9][0-9]*.[0-9]?[0-9]" #bookPriceRef='ngModel' placeholder="cena" onfocus="this.type='number'" required type='number' step="0.1" min=0.01 name="price" [(ngModel)]="book.price" />
+                    <div *ngIf="bookPriceRef.errors && bookPriceRef.touched" class="alert alert-danger"> Wprowadź cenę książki. Cena książki została podany w sposób nieprawidłowy. Przykład poprawnej ceny: 39,00 </div>
                 </div>
                 <div class="form-group" >
                     <label for="count">Ilość sztuk dostępnych w sprzedaży:</label>
-                    <input [(ngModel)]="book.count" name="count" />
+                    <input class="form-control" pattern="[0-9]*" #bookCountRef='ngModel' type="number" placeholder="dostępne do zakupu" onfocus="this.type='number'" required  min=0 step="1" [(ngModel)]="book.count" name="count" />
+                    <div *ngIf="bookCountRef.errors && bookCountRef.touched" class="alert alert-danger">Wprowadź ilość sztuk dostępnych w sprzedaży. Podaj wartość całkowitą.</div>
                 </div>
                 <div class="form-group" >
                         <label for="image">Obraz książki:</label>
-                        <input [(ngModel)]="book.image" name="image" />
+                        <input class="form-control" placeholder="opcjonalnie link do zdjęcia" [(ngModel)]="book.image" name="image" />
                 </div>
                 <div class="form-group" >
-                        <label for="isbn">ISBN:</label>
-                        <input type="isbn" [(ngModel)]="book.isbn" name="isbn" />
+                        <label for="isbn">isbn:</label>
+                        <input  type="text" #bookIsbnRef='ngModel' class="form-control" pattern="(?=[0-9X]{10}$|(?=(?:[0-9]+[-\ ]){3})[-\ 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[-\ ]){4})[-\ 0-9]{17}$)(?:97[89][-\ ]?)?[0-9]{1,5}[-\ ]?[0-9]+[-\ ]?[0-9]+[-\ ]?[0-9X]" placeholder="isbn" name="isbn" required [(ngModel)]="book.isbn"  />
+                        <div *ngIf="bookIsbnRef.errors && bookIsbnRef.touched" class="alert alert-danger">Wprowadź numer IBSN książki. To pole jest wymagane.</div>
+                        <div *ngIf="bookIsbnRef.valid==true">
+                            <div *ngFor="let bookSearch of books1" class="col">
+                                    <div *ngIf= "bookSearch.isbn == bookIsbnRef.value" class="alert alert-danger">Książka o podanym numerze ISBN istnieje w bazie danych. Ponowne dodanie tej samej książki jest niemożliwe. Możesz edytować istniejącą książkę. </div>
+                            </div>
+                        </div>
                 </div>
+               <!-- 
+                        (?:ISBN(?:-1[03])?:?\ )?  # Optional ISBN/ISBN-10/ISBN-13 identifier.
+                        (?=                       # Basic format pre-checks (lookahead):
+                          [0-9X]{10}$             #   Require 10 digits/Xs (no separators).
+                         |                        #  Or:
+                          (?=(?:[0-9]+[-\ ]){3})  #   Require 3 separators
+                          [-\ 0-9X]{13}$          #     out of 13 characters total.
+                         |                        #  Or:
+                          97[89][0-9]{10}$        #   978/979 plus 10 digits (13 total).
+                         |                        #  Or:
+                          (?=(?:[0-9]+[-\ ]){4})  #   Require 4 separators
+                          [-\ 0-9]{17}$           #     out of 17 characters total.
+                        )                         # End format pre-checks.
+                        (?:97[89][-\ ]?)?         # Optional ISBN-13 prefix.
+                        [0-9]{1,5}[-\ ]?          # 1-5 digit group identifier.
+                        [0-9]+[-\ ]?[0-9]+[-\ ]?  # Publisher and title identifiers.
+                        [0-9X]                    # Check digit.                        
+                        -->
                 <div class="form-group" >
                     <label for="describtion">Opis książki:</label>
-                    <input type="describtion" [(ngModel)]="book.describtion"  name="describtion" />
-                </div>
+                    <textarea placeholder="opcjonalnie opis" type="describtion" [(ngModel)]="book.describtion"  name="describtion"></textarea>
+                </div>           
                 <div class="form-group">
-                    <button (click)="addBook()" class="btn btn-primary">Dodaj książkę</button>
+                    <button (click)="addBook(formRef.valid)" class="btn btn-primary" [disabled]="!formRef.valid">Dodaj książkę</button>
                     <a [routerLink]="['/dashboard']" class="btn btn-link">Anuluj</a>
                 </div>
             </form>

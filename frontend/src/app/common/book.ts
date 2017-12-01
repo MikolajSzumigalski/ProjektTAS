@@ -1,10 +1,11 @@
 export class Book {
     price: number;
-    ibsn:string;
+    isbn:string;
     count:number;
     describtion:string;
     name: string;
     author: string;
+    _id:string;
     constructor() { 
     }
  } 
