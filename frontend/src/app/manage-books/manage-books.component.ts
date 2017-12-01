@@ -13,18 +13,6 @@ import {NgControl} from '@angular/forms';
   styleUrls: ['./manage-books.component.css']
 })
 export class ManageBooksComponent implements OnInit {
-  books1 = {};
-  books2 = {};
-  res = {};
-  books: Book[];
-  errorMessage: String;
-  bookName: String;
-  book = new Book();  
-  constructor(private service:CommunicationService) { }
-  removeBook(id){
-    this.service.removeBook(id).subscribe(res =>this.res = res);
-    this.refreshGetBooks();
-    }  
   ngOnInit() {
     this.service.getBooks().subscribe(books1 =>this.books1 = books1);
     setTimeout(()=>
@@ -37,19 +25,6 @@ export class ManageBooksComponent implements OnInit {
      .subscribe( books => this.books = books,
                        error => this.errorMessage = <any>error);    
   }
- addBook(valid): void {
-   if(!valid){
-     return;
-   }
-    this.service.addBookWithObservable(this.book)
-      .subscribe( book => {
-                 this.fetchBooks();		
-                                   this.reset();   
-                       this.bookName = book.name;						   
-      },
-                        error => this.errorMessage = <any>error);
-    window.location.reload()
-  }
   updateBook(book): void {
     this.service.editBookWithObservable(book)
       .subscribe( book => {
@@ -59,6 +34,31 @@ export class ManageBooksComponent implements OnInit {
       });
     this.refreshGetBooks();
   }
+  addBook(valid): void {
+    if(!valid){
+      return;
+    }
+     this.service.addBookWithObservable(this.book)
+       .subscribe( book => {
+                  this.fetchBooks();		
+                                    this.reset();   
+                        this.bookName = book.name;						   
+       },
+                         error => this.errorMessage = <any>error);
+     window.location.reload()
+   }
+  books1 = {};
+  books2 = {};
+  res = {};
+  books: Book[];
+  errorMessage: String;
+  bookName: String;
+  book = new Book();  
+  constructor(private service:CommunicationService) { }
+  removeBook(id){
+    this.service.removeBook(id).subscribe(res =>this.res = res);
+    this.refreshGetBooks();
+    }  
   refreshGetBooks():void{
     setTimeout(()=>
     this.service.getBooks()

@@ -1,6 +1,3 @@
-
-
-
 <div class = "container">
     <h2>
         Zarządzaj książkami
@@ -24,7 +21,6 @@
                         </ul>    
                     </div>
                     <div *ngIf="show">
-                        
                         <img class="card-img-top" src='{{book.image}}' alt="Card image cap">
                         <input [(ngModel)]="book.image" placeholder="book.image"> 
                         <li style="font-size:13px" class="list-group-item">Tytuł książki: 
@@ -64,44 +60,23 @@
             <form name="addNewBook" #formRef="ngForm" novalidate="false">
                 <label for="bookName">Tytuł książki</label>
                 <input type="text"  pattern="(?!.*(\s)\1.*)[ \w\.,\:;-=ąćęłńóśźżĄĘŁŃÓŚŹŻ]*" #bookNameRef='ngModel' class="form-control"  placeholder="tytuł" name="bookName" minlength="1" required  [(ngModel)]="book.name" forbiddenName=" "/>
-                {{bookNameRef.value}} Valid tittle:{{bookNameRef.valid}} {{bookNameRef.errors | json}} {{bookNameRef.touched}} 
                 <div *ngIf="bookNameRef.errors && bookNameRef.touched" class="alert alert-danger">Podanie tytułu książki jest wymagane.</div>
-                <!--<div *ngIf= "bookNameRef.value != null">
-                    <div *ngIf="bookNameRef.value.length == 1" class="alert alert-warning">Podany tytuł ma tylko jeden znak. Upewnij się, że tytuł jest poprawny.</div>
-                    <div *ngIf="bookNameRef.value.length == 2" class="alert alert-warning">Podany tytuł ma tylko dwa znaki. Upewnij się, że tytuł jest poprawny.</div>
-                </div>-->
-                <!-- <div *ngIf="bookNameRef.errors.pattern" class="alert alert-danger">Wprowadzono błędny tytuł książki.</div>-->
                 <div class="form-group" >
                     <label for="author">Autor:</label>
                     <input  type="text" #bookAuthorRef='ngModel' pattern="(?!.*(\s)\1.*)[ \w\.,\:;-=ąćęłńóśźżĄĘŁŃÓŚŹŻ]*" class="form-control" placeholder="autor" name="author" minlength="3" required [(ngModel)]="book.author"  />
-                    {{bookAuthorRef.value}} Validacja autor:{{bookAuthorRef.valid}} {{bookAuthorRef.errors | json}} {{bookAuthorRef.touched}}
                      <div *ngIf="bookAuthorRef.errors && bookAuthorRef.touched" class="alert alert-danger">Autor książki jest zbyt krótki. Minimalna długość to 3 znaki.</div>
-                    <!--UWAGA JAK SĄ DWIE FUNKCJE TO NIE MOŻNA WKLEJAĆ WARTOŚCI
-                        <div *ngIf="bookAuthorRef.errors.pattern" class="alert alert-danger">Autor książki został podany nieprawidłowo. </div>-->
-                    <!--<<div *ngIf="bookAuthorRef.errors.minlength" class="alert alert-danger">Błędnie wprowadzony autor książki. Podana wartość jest zbyt krótka.</div>
-                     div *ngIf= "bookAuthorRef.value !=null">
-                        <div *ngIf="bookAuthorRef.value.length == 1" class="alert alert-warning">Autor ma tylko jeden znak. Upewnij się, że tytuł jest poprawny. </div>
-                        <div *ngIf="bookAuthorRef.value.length == 2" class="alert alert-warning">Podany tytuł ma tylko dwa znaki. Upewnij się, że tytuł jest poprawny.</div>
-                    </div>-->
-                  <!--autor nie może być spacją -->
                 </div>
                 <div class="form-group" >
                     <label for="price">Cena:</label>
-                    <!--<input placeholder="text">-->
                     <input class="form-control" pattern="[0-9][0-9]*.[0-9]?[0-9]" #bookPriceRef='ngModel' placeholder="cena" onfocus="this.type='number'" required type='number' step="0.1" min=0.01 name="price" [(ngModel)]="book.price" />
-                    Validacja cena: {{bookPriceRef.valid}} {{bookPriceRef.errors|json}}  {{bookPriceRef.value}}
                     <div *ngIf="bookPriceRef.errors && bookPriceRef.touched" class="alert alert-danger">
                         Wprowadź cenę książki. Cena książki została podany w sposób nieprawidłowy. Przykład poprawnej ceny: 39,00
                     </div>
-                   <!--<div *ngIf="bookPriceRef.errors.pattern" class="alert alert-danger">Cena książki została podany w sposób nieprawidłowy. Przykład poprawnej ceny: 39,00</div>-->
                 </div>
-                    <!--zeby się nie dało wprowadzić 1.1111, to części setnych można wprowadzić-->
                 <div class="form-group" >
                     <label for="count">Ilość sztuk dostępnych w sprzedaży:</label>
-                   <!-- {{bookCountRef.errors|json}}-->
                     <input class="form-control" pattern="[0-9]*" #bookCountRef='ngModel' type="number" placeholder="dostępne do zakupu" onfocus="this.type='number'" required  min=0 step="1" [(ngModel)]="book.count" name="count" />
                     <div *ngIf="bookCountRef.errors && bookCountRef.touched" class="alert alert-danger">Wprowadź ilość sztuk dostępnych w sprzedaży. Podaj wartość całkowitą.</div>
-                   <!-- <div *ngIf="bookCountRef.errors.pattern" class="alert alert-danger">Podaj wartość całkowitą. </div>-->
                 </div>
                 <div class="form-group" >
                         <label for="image">Obraz książki:</label>
@@ -110,20 +85,15 @@
                 <div class="form-group" >
                         <label for="isbn">isbn:</label>
                         <input  type="text" #bookIsbnRef='ngModel' class="form-control" pattern="(?=[0-9X]{10}$|(?=(?:[0-9]+[-\ ]){3})[-\ 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[-\ ]){4})[-\ 0-9]{17}$)(?:97[89][-\ ]?)?[0-9]{1,5}[-\ ]?[0-9]+[-\ ]?[0-9]+[-\ ]?[0-9X]" placeholder="isbn" name="isbn" required [(ngModel)]="book.isbn"  />
-                        {{bookIsbnRef.value}} Validacja isbn:{{bookIsbnRef.valid}} {{bookIsbnRef.errors | json}} {{bookIsbnRef.touched}}
                          <div *ngIf="bookIsbnRef.errors && bookIsbnRef.touched" class="alert alert-danger">Wprowadź numer IBSN książki. To pole jest wymagane.</div>
                         <div *ngIf="bookIsbnRef.valid==true">
                             <div *ngFor="let bookSearch of books1" class="col">
                                     <div *ngIf= "bookSearch.isbn == bookIsbnRef.value" class="alert alert-danger">Książka o podanym numerze ISBN istnieje w bazie danych. Ponowne dodanie tej samej książki jest niemożliwe. Możesz edytować istniejącą książkę. 
-                                        {{bookIsbnRef.setCustomValidity("false")}}
                                     </div>
                             </div>
                         </div>
                 </div>
-               <!-- <div class="form-group" >
-                        <label for="isbn">ISBN:</label>
-                        <input type="text" class="form-control"  #bookIsbnRef='ngModel' placeholder="isbn"  required [(ngModel)]="book.isbn" name="isbn" />-->
-                    <!--
+               <!-- 
                         (?:ISBN(?:-1[03])?:?\ )?  # Optional ISBN/ISBN-10/ISBN-13 identifier.
                         (?=                       # Basic format pre-checks (lookahead):
                           [0-9X]{10}$             #   Require 10 digits/Xs (no separators).
@@ -141,16 +111,11 @@
                         [0-9]+[-\ ]?[0-9]+[-\ ]?  # Publisher and title identifiers.
                         [0-9X]                    # Check digit.                        
                         -->
-                   <!-- <div *ngIf="bookIsbnRef.errors.pattern != null && bookIsbnRef.errors" class="alert alert-warning">Podany numer IBSN może być nie poprawny. Sprawdź poprawność.</div>-->
-                   <!--<div *ngIf="bookIsbnRef.errors && bookIsbnRef.touched" class="alert alert-danger"> Wprowadź numer IBSN książki.</div>
-                   Validacja ISBN: {{bookIsbnRef.valid}} wartosc isbn:{{bookIsbnRef.value}} {{bookIsbnRef.errors.pattern|json}} errors: {{bookIsbnRef.errors|json}} 
-                </div>-->
                 <div class="form-group" >
                     <label for="describtion">Opis książki:</label>
                     <textarea placeholder="opcjonalnie opis" type="describtion" [(ngModel)]="book.describtion"  name="describtion"></textarea>
                 </div>           
                 <div class="form-group">
-                        Validacja Formularza:{{formRef.valid}} wartosc formularza {{formRef.value |json}}
                     <button (click)="addBook(formRef.valid)" class="btn btn-primary" [disabled]="!formRef.valid">Dodaj książkę</button>
                     <a [routerLink]="['/dashboard']" class="btn btn-link">Anuluj</a>
                 </div>
@@ -158,4 +123,3 @@
         </div>
     </div>  
 </div>
-<!-- potwierdzenie czy na pewno usunąć element-->
