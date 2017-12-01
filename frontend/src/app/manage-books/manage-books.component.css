@@ -13,13 +13,11 @@ a.btn {
     -moz-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
 }
-
-input{
+input {
     background-color: white;
     width: 100%;
-  }
-
-  textarea {
+}
+textarea {
     width: 100%;
     height: 150px;
     padding: 12px 20px;
@@ -32,9 +30,8 @@ input{
 }
 input.ng-valid[required], .ng-valid.required  {
     border-left: 5px solid #42A948; /* green */
-  }
-  
+}
   input.ng-invalid.ng-touched  {
     border-left: 5px solid #a94442; /* red */
     border-bottom: 1px solid #e74c3c !important; 
-  }
+}

@@ -1,7 +1,5 @@
 <div class = "container">
-    <h2>
-        Zarządzaj książkami
-    </h2>
+    <h2>Zarządzaj książkami</h2>
      <div class = "container-delete_book">
         <h3><br>Usuń lub edytuj książkę<br></h3>
         <div class="row">
@@ -34,10 +32,8 @@
                                     <div *ngIf="authorRef.errors && authorRef.touched" class="alert alert-danger">Minimalna długość to 3 znaki.</div>
                             <li style="font-size:13px" class="list-group-item">Cena: 
                                     <input [(ngModel)]="book.price"  #priceRef="ngModel" required pattern="[0-9][0-9]*.[0-9]?[0-9]" placeholder="book.price"> </li>
-                                    <div *ngIf="priceRef.errors && priceRef.touched" class="alert alert-danger">
-                                            Cena książki została podany w sposób nieprawidłowy. 
-                                        </div>
-                            <li style="font-size:13px" class="list-group-item">Numer ISBN:    {{book.isbn}}</li>
+                                    <div *ngIf="priceRef.errors && priceRef.touched" class="alert alert-danger"> Cena książki została podany w sposób nieprawidłowy. </div>
+                            <li style="font-size:13px" class="list-group-item">Numer ISBN:  {{book.isbn}}</li>
                             <li style="font-size:13px" class="list-group-item">Dostępna ilość:  
                                     <input [(ngModel)]="book.count"  min=0 #countRef="ngModel" pattern="[0-9]*" required placeholder="book.count"> </li>
                                     <div *ngIf="countRef.errors && countRef.touched" class="alert alert-danger">Wartość musi być liczbą całkowitą.</div>
@@ -69,9 +65,7 @@
                 <div class="form-group" >
                     <label for="price">Cena:</label>
                     <input class="form-control" pattern="[0-9][0-9]*.[0-9]?[0-9]" #bookPriceRef='ngModel' placeholder="cena" onfocus="this.type='number'" required type='number' step="0.1" min=0.01 name="price" [(ngModel)]="book.price" />
-                    <div *ngIf="bookPriceRef.errors && bookPriceRef.touched" class="alert alert-danger">
-                        Wprowadź cenę książki. Cena książki została podany w sposób nieprawidłowy. Przykład poprawnej ceny: 39,00
-                    </div>
+                    <div *ngIf="bookPriceRef.errors && bookPriceRef.touched" class="alert alert-danger"> Wprowadź cenę książki. Cena książki została podany w sposób nieprawidłowy. Przykład poprawnej ceny: 39,00 </div>
                 </div>
                 <div class="form-group" >
                     <label for="count">Ilość sztuk dostępnych w sprzedaży:</label>
@@ -85,11 +79,10 @@
                 <div class="form-group" >
                         <label for="isbn">isbn:</label>
                         <input  type="text" #bookIsbnRef='ngModel' class="form-control" pattern="(?=[0-9X]{10}$|(?=(?:[0-9]+[-\ ]){3})[-\ 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[-\ ]){4})[-\ 0-9]{17}$)(?:97[89][-\ ]?)?[0-9]{1,5}[-\ ]?[0-9]+[-\ ]?[0-9]+[-\ ]?[0-9X]" placeholder="isbn" name="isbn" required [(ngModel)]="book.isbn"  />
-                         <div *ngIf="bookIsbnRef.errors && bookIsbnRef.touched" class="alert alert-danger">Wprowadź numer IBSN książki. To pole jest wymagane.</div>
+                        <div *ngIf="bookIsbnRef.errors && bookIsbnRef.touched" class="alert alert-danger">Wprowadź numer IBSN książki. To pole jest wymagane.</div>
                         <div *ngIf="bookIsbnRef.valid==true">
                             <div *ngFor="let bookSearch of books1" class="col">
-                                    <div *ngIf= "bookSearch.isbn == bookIsbnRef.value" class="alert alert-danger">Książka o podanym numerze ISBN istnieje w bazie danych. Ponowne dodanie tej samej książki jest niemożliwe. Możesz edytować istniejącą książkę. 
-                                    </div>
+                                    <div *ngIf= "bookSearch.isbn == bookIsbnRef.value" class="alert alert-danger">Książka o podanym numerze ISBN istnieje w bazie danych. Ponowne dodanie tej samej książki jest niemożliwe. Możesz edytować istniejącą książkę. </div>
                             </div>
                         </div>
                 </div>
