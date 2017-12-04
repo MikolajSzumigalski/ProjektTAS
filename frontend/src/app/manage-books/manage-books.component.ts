@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommunicationService } from "app/common/communication.service";
 import { Book } from 'app/common/book';
 import { Observable } from 'rxjs';
-//import {InlineEditorModule} from 'ng2-inline-editor'
-import { InlineEditDirective } from 'angular2-inline-edit';
 import { FormsModule, Validators } from '@angular/forms';
 import {NgControl} from '@angular/forms';
 
