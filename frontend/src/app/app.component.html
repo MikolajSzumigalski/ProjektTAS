@@ -13,11 +13,17 @@
       <a [routerLink]=" ['/register'] ">Zarejestruj</a>
     </li>
     <li>
-      <a [routerLink]=" ['/user-account'] ">Koszyk</a>
+      <a [routerLink]=" ['/user-account'] ">Konto</a>
     </li>
+
+    <li *ngIf="authService.loggedIn()">
+        <a href="#" class="nav-link" (click)="onLogoutClick()">Wyloguj</a>
+    </li>
+
   </ul>
 </nav>
   <div class="main-content">
+      <flash-messages></flash-messages>
     <router-outlet></router-outlet>
   </div>
 

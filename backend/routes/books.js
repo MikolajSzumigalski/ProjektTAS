@@ -1,10 +1,17 @@
-var express = require('express');
+const express = require('express');
 const router = express.Router();
-var mongojs = require('mongojs');
+const mongojs = require('mongojs');
 const bodyParser = require('body-parser');
-var db =  mongojs('mongodb://janusz:qwerty@ds125365.mlab.com:25365/uamtas', ['books']);
+const db =  mongojs('mongodb://janusz:qwerty@ds125365.mlab.com:25365/uamtas', ['books']);
+
+//dodane
+const app = express();
+const cors = require("cors");
+app.use(cors());
+
 router.use(bodyParser.urlencoded({extended: true}))
 router.use(bodyParser.json());
+
 router.get('/books', function(req,res,next){
     db.books.find(function(err, books){
         if(err){
@@ -15,6 +22,7 @@ router.get('/books', function(req,res,next){
 		res.send(jsonik);
     });
 });
+
 router.get('/find/:id', function(req, res, next){
     db.books.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, books){
         if(err){
@@ -25,6 +33,7 @@ router.get('/find/:id', function(req, res, next){
 		res.send(jsonik);
     });
 });
+
 router.get('/remove/:id', function(req, res, next){
     db.books.remove({_id : mongojs.ObjectId(req.params.id)}, function(err, books){
         if(err){
@@ -32,6 +41,7 @@ router.get('/remove/:id', function(req, res, next){
         }
     });
 });
+
 router.post('/edit', function(req, res) {
     console.log("data edit");
 	var _id = req.body._id;
@@ -49,6 +59,7 @@ router.post('/edit', function(req, res) {
         }
 	});
 });
+
 router.post('/insert', function(req, res) {
 	res.json({status:"data send"});
 	var name = req.body.name;
