@@ -28,7 +28,7 @@ export class UserAccountComponent implements OnInit {
   }
   onLogoutClick() {
     this.authService.logout();
-    this.flashMessages.show('You are logged out', {
+    this.flashMessages.show('Wylogowano', {
       cssClass: 'alert-success',
       timeout: 3000
     });
